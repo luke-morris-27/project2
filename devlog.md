@@ -12,3 +12,8 @@
 ## Today I will finish implementing follow_moves, which will be a recursive function to follow a list of movement instructions provided by the user. Recursion is the best way to implement this because it can continously execute the code until it moves into a wall or an exit. I will need to find a way to check for the current space in the maze as well.
 
 ## End of session update at 7:25 PM: I finished follow_moves and created a legality predicate which simply ensures the current space is not a wall. I will need to deliberate on the best way to end movement once an exit is reached. I may add an extra checker for e to one of the function or maybe there will be something easier. I will then need to thoroughly test the program by inputting a lot of complex and non-square mazes and also enter invalid mazes to ensure they are rejected.
+
+# 12-7-2025 1:38 AM
+## Today I will implement any additional space checking that may be needed for e or other spaces. I looked through the code and the structure of Prolog so I believe I just will add a line for it at the end of find_exit.
+
+## End of session update at 1:58 AM: I have implemented checking for landing on e by inserting a check for it as part of find_exit. I have tested the algorithm with both valid and invalid inputs and with a number of mazes and it seems to work except for one problem: My code for moving into a wall is flawed. I can move into and back out of a wall, make it to the end, and it declares it a valid maze completion. Next time I will have to fix this.
