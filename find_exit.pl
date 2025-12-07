@@ -1,7 +1,8 @@
 find_exit(Maze, Actions) :-
     valid_maze(Maze),
-    find_start(Maze, StartRow, StartCol)
-
+    find_start(Maze, StartRow, StartCol),
+    follow_moves(Maze, Actions, StartRow, StartCol, EndRow, EndCol),
+    cell(Maze, EndRow, EndCol, e).
 
 valid_maze(Maze) :-
     Maze \= [],
@@ -20,6 +21,19 @@ follow_moves(_, [], R, C, R, C).
 follow_moves(Maze, [A|Rest], R0, C0, RF, CF) :-
     move(Maze, A, R0, C0, R1, C1),
     follow_moves(Maze, Rest, R1, C1, RF, CF).
+
+move(Maze, left,  R, C0, R, C1) :-
+    C1 is C0 - 1,
+    legal(Maze, R, C1).
+move(Maze, right, R, C0, R, C1) :-
+    C1 is C0 + 1,
+    legal(Maze, R, C1).
+move(Maze, up,    R0, C, R1, C) :-
+    R1 is R0 - 1,
+    legal(Maze, R1, C).
+move(Maze, down,  R0, C, R1, C) :-
+    R1 is R0 + 1,
+    legal(Maze, R1, C).
 
 legal(Maze, R, C) :-
     cell(Maze, R, C, Cell),
